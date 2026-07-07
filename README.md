@@ -107,6 +107,12 @@ Checks performed:
 
 The script exits non-zero on any failure, so it can be wired into CI.
 
+## Deployment
+
+See [`DEPLOYMENT.md`](DEPLOYMENT.md) for publishing this repo to its git remote,
+the release/update workflow, and loading the vocabulary into an RDF store
+(RDF4J).
+
 ## Provenance
 
 Source: *1297.0 ANZSRC – Australian and New Zealand Standard Research
