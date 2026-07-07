@@ -1,0 +1,16 @@
+# Python virtual environment
+.venv/
+venv/
+
+# Python caches / build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# OS cruft
+.DS_Store
+
+# Local source spreadsheets are not distributed with this repo.
+# Remove this rule if you decide to track the input workbook.
+*.xlsx
