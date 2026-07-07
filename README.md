@@ -1,5 +1,7 @@
 # ANZSRC-FOR 2020 → SKOS RDF
 
+[![validate](https://github.com/leo-monus/anzsrc-for-rdf/actions/workflows/validate.yml/badge.svg)](https://github.com/leo-monus/anzsrc-for-rdf/actions/workflows/validate.yml)
+
 Convert the ABS **ANZSRC 2020 Fields of Research (FoR)** spreadsheet into a
 [SKOS](https://www.w3.org/TR/skos-reference/) RDF vocabulary.
 
