@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Convert the ANZSRC-FOR 2020 spreadsheet into a SKOS RDF vocabulary.
+"""Convert an ANZSRC 2020 spreadsheet (FoR or SEO) into a SKOS RDF vocabulary.
 
-The workbook (``anzsrc-for_2020.xlsx``) published by the ABS contains six
-worksheets. This converter uses:
+The ABS workbooks (e.g. ``anzsrc-for_2020.xlsx`` for Fields of Research, or the
+Socio-Economic Objectives workbook) each contain six worksheets. This converter
+uses:
 
 * ``Table 3`` - the master list of every concept (Divisions, Groups and
-  Fields) with its preferred label. This is the authoritative concept list.
+  Fields/Objectives) with its preferred label. The authoritative concept list.
 * ``Table 4`` - definitions and exclusions for Divisions and Groups only.
 * ``Explanatory Notes`` - free text used for the concept-scheme ``skos:note``.
 
@@ -16,7 +17,7 @@ Hierarchy is derived from the numeric notation:
 
 * 2-digit  -> Division -> a top concept of the scheme
 * 4-digit  -> Group    -> ``skos:broader`` = its first 2 digits
-* 6-digit  -> Field    -> ``skos:broader`` = its first 4 digits
+* 6-digit  -> Field/Objective -> ``skos:broader`` = its first 4 digits
 
 SKOS mapping per concept
 ------------------------
@@ -59,9 +60,6 @@ DEFAULT_LANG = "en"
 MASTER_SHEET = "Table 3"          # all concepts + prefLabels
 DEFINITION_SHEET = "Table 4"      # definitions + exclusions (Divisions/Groups)
 NOTES_SHEET = "Explanatory Notes"  # scheme-level note
-
-# Expected counts per notation length (used for validation).
-EXPECTED = {2: 23, 4: 213, 6: 1967}
 
 
 # --------------------------------------------------------------------------- #
@@ -200,20 +198,34 @@ def parse_scheme_note(ws) -> str | None:
 
 
 def find_title(wb) -> str:
-    """Compose the scheme title from the workbook header rows."""
+    """Compose the scheme title from the workbook header rows.
+
+    The header block looks like::
+
+        1297.0 ANZSRC - Australian and New Zealand Standard ..., 2020
+        Fields of Research (FoR)      # or: Socio-Economic Objectives (SEO)
+        Released at 11.30am ...
+
+    so the title becomes ``"<base>: <subtitle>"`` regardless of vocabulary.
+    """
     for name in (NOTES_SHEET, MASTER_SHEET, "Contents"):
         if name not in wb.sheetnames:
             continue
         rows = list(wb[name].iter_rows(min_row=1, max_row=6, values_only=True))
         parts = [clean_label(r[0]) for r in rows if r and clean_label(r[0])]
-        # Rows look like: ['1297.0 ANZSRC ...', 'Fields of Research (FoR)', ...]
         base = next((p for p in parts if p.startswith("1297.0")), None)
-        sub = next((p for p in parts if "Fields of Research" in p), None)
-        if base and sub:
-            return f"{base}: {sub}"
-        if base:
-            return base
-    return "ANZSRC 2020 Fields of Research (FoR)"
+        if not base:
+            continue
+        # Subtitle is the next header line after the base that is not the
+        # release-date line ("Fields of Research (FoR)" / "Socio-Economic
+        # Objectives (SEO)").
+        sub = None
+        for p in parts[parts.index(base) + 1:]:
+            if not p.lower().startswith("released"):
+                sub = p
+                break
+        return f"{base}: {sub}" if sub else base
+    return "ANZSRC 2020"
 
 
 # --------------------------------------------------------------------------- #
@@ -291,14 +303,9 @@ def validate(concepts: dict[str, str], definitions: dict[str, dict[str, str]]) -
     for code in concepts:
         by_len[len(code)] = by_len.get(len(code), 0) + 1
     print("Concept counts by notation length:", dict(sorted(by_len.items())), file=sys.stderr)
-    for length, expected in EXPECTED.items():
-        actual = by_len.get(length, 0)
-        status = "OK" if actual == expected else "MISMATCH"
-        print(f"  {length}-digit: {actual} (expected {expected}) [{status}]", file=sys.stderr)
+    print(f"Total concepts: {len(concepts)}", file=sys.stderr)
 
-    orphans = [
-        c for c in concepts if len(c) > 2 and c[:-2] not in concepts
-    ]
+    orphans = [c for c in concepts if len(c) > 2 and c[:-2] not in concepts]
     if orphans:
         print(f"  WARNING: {len(orphans)} concepts without a parent: {orphans[:10]}", file=sys.stderr)
 

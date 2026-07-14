@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate a generated ANZSRC-FOR SKOS RDF file.
+"""Validate a generated ANZSRC SKOS RDF file (FoR or SEO).
 
 Runs structural / SKOS integrity checks on the generated vocabulary and,
 optionally, cross-checks the set of concept notations against a reference RDF
@@ -24,9 +24,6 @@ from rdflib import RDF, SKOS, Graph, URIRef
 DEFAULT_RDF = "output/anzsrc-for_2020.rdf"
 DEFAULT_SCHEME_URI = "https://linked.data.gov.au/def/anzsrc-for/2020"
 
-# Expected number of concepts per notation length (Divisions/Groups/Fields).
-EXPECTED = {2: 23, 4: 213, 6: 1967}
-
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(
@@ -39,7 +36,17 @@ def main(argv: list[str] | None = None) -> int:
         "--reference",
         help="Optional reference RDF; the concept notation set must match it exactly",
     )
+    ap.add_argument(
+        "--expect",
+        help="Optional strict counts per notation length, e.g. '2:23,4:213,6:1967'",
+    )
     args = ap.parse_args(argv)
+
+    expected: dict[int, int] = {}
+    if args.expect:
+        for part in args.expect.split(","):
+            key, _, val = part.partition(":")
+            expected[int(key.strip())] = int(val.strip())
 
     scheme = URIRef(args.scheme_uri)
     base = args.scheme_uri.rstrip("/") + "/"
@@ -69,10 +76,10 @@ def main(argv: list[str] | None = None) -> int:
         code = str(c).replace(base, "")
         by_len[len(code)] = by_len.get(len(code), 0) + 1
     print("counts by notation length:", dict(sorted(by_len.items())))
-    for length, expected in EXPECTED.items():
+    for length, exp in sorted(expected.items()):
         actual = by_len.get(length, 0)
-        if actual != expected:
-            problems.append(f"count mismatch for {length}-digit: {actual} != {expected}")
+        if actual != exp:
+            problems.append(f"count mismatch for {length}-digit: {actual} != {exp}")
 
     # Top concepts must be symmetric and all 2-digit.
     tops = set(g.objects(scheme, SKOS.hasTopConcept))
