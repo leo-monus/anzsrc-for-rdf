@@ -12311,7 +12311,7 @@ It includes:
         <https://linked.data.gov.au/def/anzsrc-for/2020/340799> ;
     skos:notation "3407" ;
     skos:prefLabel "Theoretical and computational chemistry"@en ;
-    skos:scopeNote "a) Reaction kinetics and dynamics is included in 3406 Physical chemistry."@en .
+    skos:scopeNote "a) Reaction kinetics and dynamics is included in Group 3406 Physical chemistry."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3601> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/36> ;
@@ -12434,7 +12434,7 @@ b) Pollution modelling and control, environmental sustainable engineering and wa
     skos:notation "5103" ;
     skos:prefLabel "Classical physics"@en ;
     skos:scopeNote """a) Mathematical aspects of classical physics are included in Group 4902 Mathematical physics.
-b) Classical and physical optics is included in Group 5103 Classical physics."""@en .
+b) Optical physics is included in Group 5102 Atomic, molecular and optical physics."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/5203> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/52> ;
@@ -12447,7 +12447,7 @@ b) Classical and physical optics is included in Group 5103 Classical physics."""
         <https://linked.data.gov.au/def/anzsrc-for/2020/520399> ;
     skos:notation "5203" ;
     skos:prefLabel "Clinical and health psychology"@en ;
-    skos:scopeNote """a) Psychiatry where chemical interventions are employed to modify behaviour is included in 3202 Clinical sciences.
+    skos:scopeNote """a) Psychiatry where chemical interventions are employed to modify behaviour is included in Group 3202 Clinical sciences.
 b) Research investigating mental health services is included in the Group 4203 Health services and systems."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3207> a skos:Concept ;
@@ -12487,7 +12487,7 @@ f) Food chemistry is included in Group 3006 Food sciences.
 g) Medical biochemistry is included in Group 3205 Medical biochemistry and metabolomics.
 h) Clinical chemistry is included in Group 3202 Clinical sciences.
 i) Pharmacology for human use and human toxicology is included in Group 3214 Pharmacology and pharmaceutical sciences.
-j) Environmental chemistry is included in 3701 Atmospheric sciences."""@en .
+j) Environmental chemistry is included in Group 3701 Atmospheric sciences."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3504> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/35> ;
@@ -12517,7 +12517,7 @@ c) Private policing and security services are included in Group 4402 Criminology
         <https://linked.data.gov.au/def/anzsrc-for/2020/360299> ;
     skos:notation "3602" ;
     skos:prefLabel "Creative and professional writing"@en ;
-    skos:scopeNote "a) Journalism is included in 4701 Communication and media studies."@en .
+    skos:scopeNote "a) Journalism studies is included in Group 4701 Communication and media studies."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3707> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/37> ;
@@ -12564,7 +12564,7 @@ b) Transport engineering other than automotive engineering is included in Group 
 c) Mechatronics without automotive applications is included in Group 4007 Control engineering, mechatronics and robotics.
 d) Materials engineering without automotive applications is included in Group 4016 Materials engineering.
 e) Heat and mass transfer operations, fluidisation, fluid mechanics and turbulent flows are included in Group 4012 Fluid mechanics and thermal engineering.
-f) Electrical energy generation and storage are included in 4008 Electrical engineering."""@en .
+f) Electrical energy generation and storage are included in Group 4008 Electrical engineering."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4015> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/40> ;
@@ -12679,7 +12679,8 @@ d) Environmental biogeochemistry is included in Group 4103 Environmental biotech
         <https://linked.data.gov.au/def/anzsrc-for/2020/510299> ;
     skos:notation "5102" ;
     skos:prefLabel "Atomic, molecular and optical physics"@en ;
-    skos:scopeNote "a) Atom optics is included in Group 5108 Quantum physics."@en .
+    skos:scopeNote """a) Atom optics is included in Group 5108 Quantum physics.
+b) Classical and physical optics is included at Group 5103 Classical physics."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/5108> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/51> ;
@@ -12809,7 +12810,10 @@ f) Mycology, which for the purpose of this classification includes the study of 
         <https://linked.data.gov.au/def/anzsrc-for/2020/320699> ;
     skos:notation "3206" ;
     skos:prefLabel "Medical biotechnology"@en ;
-    skos:scopeNote "a) Biomedical imaging, medical devices, neural engineering and tissue engineering are included in Group 4003 Biomedical engineering."@en .
+    skos:scopeNote """a) Biomedical imaging, medical devices, neural engineering and tissue engineering are included in Group 4003 Biomedical engineering.
+b) Genetic modification of plants, microbes or animals for agricultural purposes is included in Group 3001 Agricultural biotechnology.
+c) Genetic modification of plants, microbes or animals for environmental purposes and biological control of pests, diseases and exotic species is included in Group 4103 Environmental biotechnology.
+d) Genetic modification of plants, microbes or animals for industrial purposes (other than agriculture) is included in Group 3106 Industrial biotechnology."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3210> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/32> ;
@@ -13119,7 +13123,7 @@ b) Systems software to support efficient execution of machine learning is includ
     skos:scopeNote """a) Combinatorics other than physical combinatorics is included in Group 4904 Pure mathematics.
 b) Development of statistical techniques is included in Group 4905 Statistics.
 c) Statistical physics is included in Group 5103 Classical physics.
-d) Statistical mechanics associated with chemical processes is included in 3407 Theoretical and computational chemistry."""@en .
+d) Statistical mechanics associated with chemical processes is included in Group 3407 Theoretical and computational chemistry."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/5109> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/51> ;
@@ -13213,7 +13217,7 @@ b) Human nutrition is included in Group 3210 Nutrition and dietetics."""@en .
     skos:prefLabel "Industrial biotechnology"@en ;
     skos:scopeNote """a) Environmental biotechnology, nanotechnology and nanometrology is included in Group 4103 Environmental biotechnology.
 b) Genetic modification of plants, microbes or animals for agricultural purposes is included in Group 3001 Agricultural biotechnology.
-c) Genetic modification of plants, microbes or animals for industrial purposes (other than agriculture) is included in Group 3106 Industrial biotechnology.
+c) Genetic modification of plants, microbes or animals for environmental purposes and biological control of pests, diseases and exotic species is included in Group 4103 Environmental biotechnology.
 d) Genetic modification of plants, microbes or animals for medical purposes is included in Group 3206 Medical biotechnology."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3205> a skos:Concept ;
@@ -13361,8 +13365,7 @@ d) Logistics and supply chain management is included in Group 3509 Transportatio
         <https://linked.data.gov.au/def/anzsrc-for/2020/350507>,
         <https://linked.data.gov.au/def/anzsrc-for/2020/350599> ;
     skos:notation "3505" ;
-    skos:prefLabel "Human resources and industrial relations"@en ;
-    skos:scopeNote "a) Organisational and occupational health and safety is included in Group 4206 Public health."@en .
+    skos:prefLabel "Human resources and industrial relations"@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4001> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/40> ;
@@ -13383,7 +13386,7 @@ b) Transport engineering other than aerospace engineering is included in Group 4
 c) Remote sensing is included in Group 4013 Geomatic engineering.
 d) Heat and mass transfer operations, fluidisation, fluid mechanics and turbulent flows are included in Group 4012 Fluid mechanics and thermal engineering.
 e) Satellite communications are included in Group 4006 Communications engineering.
-f) Aerodynamics is included in 4012 Fluid mechanics and thermal engineering."""@en .
+f) Aerodynamics is included in Group 4012 Fluid mechanics and thermal engineering."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4104> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/41> ;
@@ -13484,8 +13487,8 @@ b) Archaeology is included in Group 4301 Archaeology."""@en .
         <https://linked.data.gov.au/def/anzsrc-for/2020/451999> ;
     skos:notation "4519" ;
     skos:prefLabel "Other Indigenous data, methodologies and global Indigenous studies"@en ;
-    skos:scopeNote """a) Research methods of Aboriginal and Torres Strait Islander are included in Group 4501, Māori in Group 4511 and Pacific Peoples in Group 4513.
-d) Māori data sovereignty is in 4509."""@en .
+    skos:scopeNote """a) Research methods of Aboriginal and Torres Strait Islander are included in Group 4501 Aboriginal and Torres Strait Islander culture, language and history, Māori in Group 4511 Ngā tāngata, te porihanga me ngā hapori o te Māori (Māori peoples, society and community) and Pacific Peoples in Group 4513 Pacific Peoples culture, language and history.
+b) Māori data sovereignty is included in 4512 Ngā pūtaiao Māori (Māori sciences)."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4604> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/46> ;
@@ -13501,8 +13504,7 @@ d) Māori data sovereignty is in 4509."""@en .
         <https://linked.data.gov.au/def/anzsrc-for/2020/460499> ;
     skos:notation "4604" ;
     skos:prefLabel "Cybersecurity and privacy"@en ;
-    skos:scopeNote """a) Legal aspects of cybersecurity and privacy are included in Group 4604 Cybersecurity and privacy.
-b) Cybercrime is included in Group 4402 Criminology."""@en .
+    skos:scopeNote "a) Cybercrime is included in Group 4402 Criminology."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4613> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/46> ;
@@ -13624,7 +13626,7 @@ b) Philosophy of religion is included in Group 5003 Philosophy."""@en .
     skos:notation "5104" ;
     skos:prefLabel "Condensed matter physics"@en ;
     skos:scopeNote """a) Other material sciences are included in Groups 3402 Inorganic chemistry, 3403 Macromolecular and materials chemistry, 4003 Biomedical engineering, 4016 Materials engineering and 4019 Resources engineering and extractive metallurgy.
-b) Nanotechnology is included in Group 4103 Environmental biotechnology, 3106 Industrial biotechnology, 4018 Nanotechnology and 3206 Medical biotechnology."""@en .
+b) Nanotechnology is included in Groups 4103 Environmental biotechnology, 3106 Industrial biotechnology, 4018 Nanotechnology and 3206 Medical biotechnology."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/5202> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/52> ;
@@ -14085,7 +14087,7 @@ e) Biocatalysis is included in Group 3106 Industrial biotechnology."""@en .
         <https://linked.data.gov.au/def/anzsrc-for/2020/3599> ;
     skos:notation "35" ;
     skos:prefLabel "COMMERCE, MANAGEMENT, TOURISM AND SERVICES"@en ;
-    skos:scopeNote "a) Commerce, management, tourism and services relating to Aboriginal and Torres Strait Islanders are included in Group 4505 Aboriginal and Torres Strait Islander peoples, society and community, Māori in Group 4511 Te ahurea, reo me te hītori o te Māori (Māori culture, language and history), Pacific Peoples in Group 4517 Pacific Peoples, society and community and other Indigenous in Group 4519 Other Indigenous data, methodologies and global Indigenous studies."@en ;
+    skos:scopeNote "a) Commerce, management, tourism and services relating to Aboriginal and Torres Strait Islanders are included in Group 4505 Aboriginal and Torres Strait Islander peoples, society and community, Māori in Group 4511 Ngā tāngata, te porihanga me ngā hapori o te Māori (Māori peoples, society and community), Pacific Peoples in Group 4517 Pacific Peoples society and community, and other Indigenous in Group 4519 Other Indigenous data, methodologies and global Indigenous studies."@en ;
     skos:topConceptOf <https://linked.data.gov.au/def/anzsrc-for/2020> .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3502> a skos:Concept ;
@@ -14221,7 +14223,7 @@ b) Cultural studies are included in Group 4702 Cultural studies."""@en .
         <https://linked.data.gov.au/def/anzsrc-for/2020/440599> ;
     skos:notation "4405" ;
     skos:prefLabel "Gender studies"@en ;
-    skos:scopeNote """a) Gender, sexuality and education is included 3904 Specialist studies in education.
+    skos:scopeNote """a) Gender, sexuality and education is included Group 3904 Specialist studies in education.
 b) Gender history is included in Group 4303 Historical studies.
 c) Anthropology of gender and sexuality is included in Group 4401 Anthropology.
 d) Gender and crime is included in Group 4402 Criminology.
@@ -14229,12 +14231,12 @@ e) Gender and politics is included in Group 4408 Political science.
 f) Gender, policy and administration is included in Group 4407 Policy and administration.
 g) Sociology of gender is included in Group 4410 Sociology.
 h) Culture, representation and identity is included in Group 4702 Cultural studies.
-i) Law, gender and sexuality is included in Group 4804 Law.
+i) Law, gender and sexuality is included in Group 4804 Law in context.
 j) Gender psychology is included in Group 5205 Social and personality psychology."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4506> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/45> ;
-    skos:definition "This group covers mathematical sciences, physical sciences, chemical sciences, biology, engineering, information systems and computing sciences related to Aboriginal and Torres Strait Islander."@en ;
+    skos:definition "This group covers mathematical sciences, physical sciences, chemical sciences, biological sciences, engineering, information systems and computing sciences related to Aboriginal and Torres Strait Islander."@en ;
     skos:inScheme <https://linked.data.gov.au/def/anzsrc-for/2020> ;
     skos:narrower <https://linked.data.gov.au/def/anzsrc-for/2020/450601>,
         <https://linked.data.gov.au/def/anzsrc-for/2020/450602>,
@@ -14248,7 +14250,7 @@ j) Gender psychology is included in Group 5205 Social and personality psychology
         <https://linked.data.gov.au/def/anzsrc-for/2020/450699> ;
     skos:notation "4506" ;
     skos:prefLabel "Aboriginal and Torres Strait Islander sciences"@en ;
-    skos:scopeNote "a) Broader Indigenous data and data technologies is included in Group 4519."@en .
+    skos:scopeNote "a) Broader Indigenous data and data technologies is included in Group 4519 Other Indigenous data, methodologies and global Indigenous studies."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4517> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/45> ;
@@ -14266,7 +14268,7 @@ j) Gender psychology is included in Group 5205 Social and personality psychology
         <https://linked.data.gov.au/def/anzsrc-for/2020/451799> ;
     skos:notation "4517" ;
     skos:prefLabel "Pacific Peoples sciences"@en ;
-    skos:scopeNote "a) Pacific Peoples health policy is included in Group 4516."@en .
+    skos:scopeNote "a) Pacific Peoples health policy is included in Group 4516 Pacific Peoples health and wellbeing."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4603> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/46> ;
@@ -14352,11 +14354,11 @@ f) Communications technologies using satellites are included in Group 4006 Commu
     skos:prefLabel "Agricultural biotechnology"@en ;
     skos:scopeNote """a) Improvement of plants through selective breeding is included in Group 3004 Crop and pasture production and Group 3007 Forestry sciences and Group 3008 Horticultural production.
 b) Improvement of animals through selective breeding is included in Group 3003 Animal production.
-b) Genetic modification of plants, microbes or animals for environmental purposes and biological control of pests, diseases and exotic species is included in Group 4103 Environmental biotechnology.
-c) Genetic modification of plants, microbes or animals for industrial purposes (other than agriculture) is included in Group 3106 Industrial biotechnology.
-d) Genetic modification of plants, microbes or animals for medical purposes is included in Group 3206 Medical biotechnology.
-e) Nanobiotechnology is included in Group 3106 Industrial biotechnology and medical biotechnology is included in Group 1119 Nanotechnology health.
-f) Ethical use of biotechnology is included in Group 5001 Applied ethics."""@en .
+c) Genetic modification of plants, microbes or animals for environmental purposes and biological control of pests, diseases and exotic species is included in Group 4103 Environmental biotechnology.
+d) Genetic modification of plants, microbes or animals for industrial purposes (other than agriculture) is included in Group 3106 Industrial biotechnology.
+e) Genetic modification of plants, microbes or animals for medical purposes is included in Group 3206 Medical biotechnology.
+f) Nanobiotechnology is included in Group 3106 Industrial biotechnology, medical biotechnology is included in Group 3206 Medical biotechnology, and nanotechnology is included in Group 4018 Nanotechnology.
+g) Ethical use of biotechnology is included in Group 5001 Applied ethics."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3002> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/30> ;
@@ -14502,7 +14504,7 @@ b) Medical biotechnology is included in Group 3206 Medical biotechnology."""@en 
 b) Use of computing for information systems education is included in Group 4609 Information systems.
 c) Intelligent robotics not focussing primarily on the social aspects of interactions between human and  robot is included in Group 4602 Artificial intelligence.
 d) Hardware aspects of social robotics is included in Group 4007 Control engineering, mechatronics and robotics.
-e) Design of interfaces for, and experience with, business information systems is included in Group 4906 Information systems."""@en .
+e) Design of interfaces for, and experience with, business information systems is included in Group 4609 Information systems."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4610> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/46> ;
@@ -14778,7 +14780,7 @@ i) Electro-optical, photonic and photovoltaic devices are included in Group 4009
         <https://linked.data.gov.au/def/anzsrc-for/2020/451299> ;
     skos:notation "4512" ;
     skos:prefLabel "Ngā pūtaiao Māori (Māori sciences)"@en ;
-    skos:scopeNote "a) Broader Indigenous data and data technologies is included in Group 4519."@en .
+    skos:scopeNote "a) Broader Indigenous data and data technologies is included in Group 4519 Other Indigenous data, methodologies and global Indigenous studies."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4605> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/46> ;
@@ -14990,7 +14992,7 @@ d) Palaeoclimatology is included in Group 3709 Physical geography and environmen
 e) Palaeontology associated with palaeoecological studies is included in Group 3103 Ecology.
 f) Materials engineering is included in Group 4016 Materials engineering.
 g) Mining, mineral processing and metallurgy are included in Group 4019 Resources engineering and extractive metallurgy.
-h) Solar system planetary science (excl. planetary geology) is included in 5109 Space sciences."""@en .
+h) Solar system planetary science (excl. planetary geology) is included in Group 5109 Space sciences."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3904> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/39> ;
@@ -15117,7 +15119,7 @@ c) Development of computer hardware is included in Group 4009 Electronics, senso
 d) Health information systems, including surveillance, where the focus is not on computer science are included in Group 4203 Health services and systems.
 e) Health information systems with a focus on computer sciences are included in Group 4601 Applied computing.
 f) Business information systems are included in Group 3503 Business systems in context.
-g) Data science for earth science and geospatial data visualisation is included in Group 3704 Geoinformatics and geospatial information systems and geospatial data modelling is included in 4013 Geomatic engineering."""@en .
+g) Data science for earth science and geospatial data visualisation is included in Group 3704 Geoinformatics and geospatial information systems and geospatial data modelling is included in Group 4013 Geomatic engineering."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4904> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/49> ;
@@ -15148,7 +15150,7 @@ It includes:
 • agronomy;
 • genetics and field protection procedures for crop and pasture production;
 • post harvest treatment transportation of crops and grains; and
-• weed science"""@en ;
+• weed science."""@en ;
     skos:inScheme <https://linked.data.gov.au/def/anzsrc-for/2020> ;
     skos:narrower <https://linked.data.gov.au/def/anzsrc-for/2020/300401>,
         <https://linked.data.gov.au/def/anzsrc-for/2020/300402>,
@@ -15796,8 +15798,8 @@ e) Historical studies in crime is included in Group 4303 Historical studies.
 f) Crime policy is included in Group 4407 Policy and administration.
 g) Digital forensics is included in Group 4604 Cybersecurity and privacy.
 h) International criminal law is included in Group 4803 International and comparative law.
-i) Criminal Law is included in Group 4804 Law.
-j) Criminal procedure is included in 4805 Legal systems.
+i) Criminal Law is included in Group 4804 Law in context.
+j) Criminal procedure is included in Group 4805 Legal systems.
 k) Forensic evaluation, inference and statistics is included in Group 4905 Statistics.
 l) Forensic psychology is included in Group 5201 Applied and developmental psychology."""@en .
 
@@ -16141,7 +16143,7 @@ e) History of specific concepts or fields of study (including the sciences, huma
         <https://linked.data.gov.au/def/anzsrc-for/2020/451899> ;
     skos:notation "4518" ;
     skos:prefLabel "Pacific Peoples society and community"@en ;
-    skos:scopeNote "a) Broader Indigenous data and data technologies is included in Group 4519."@en .
+    skos:scopeNote "a) Broader Indigenous data and data technologies is included in Group 4519 Other Indigenous data, methodologies and global Indigenous studies."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/3202> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/32> ;
@@ -16184,7 +16186,7 @@ d) Oral pathology is included in Group 3203 Dentistry.
 e) Radiotherapy and cancer genetics is included in Group 3211 Oncology and carcinogenesis.
 f) Psychology is included in Division 52 Psychology.
 g) Physiotherapy, podiatry and rehabilitation and therapy are included in Group 4201 Allied health and rehabilitation science.
-h) Human movement is included in 4207 Sports science and exercise."""@en .
+h) Human movement is included in Group 4207 Sports science and exercise."""@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4505> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/45> ;
@@ -16220,7 +16222,7 @@ h) Human movement is included in 4207 Sports science and exercise."""@en .
         <https://linked.data.gov.au/def/anzsrc-for/2020/450599> ;
     skos:notation "4505" ;
     skos:prefLabel "Aboriginal and Torres Strait Islander peoples, society and community"@en ;
-    skos:scopeNote "a) Aboriginal and Torres Strait Islander health policy is included in Group 4504."@en .
+    skos:scopeNote "a) Aboriginal and Torres Strait Islander health policy is included in Group 4504 Aboriginal and Torres Strait Islander health and wellbeing."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4511> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/45> ;
@@ -16260,7 +16262,7 @@ h) Human movement is included in 4207 Sports science and exercise."""@en .
         <https://linked.data.gov.au/def/anzsrc-for/2020/451199> ;
     skos:notation "4511" ;
     skos:prefLabel "Ngā tāngata, te porihanga me ngā hapori o te Māori (Māori peoples, society and community)"@en ;
-    skos:scopeNote "a) Māori health policy is included in Group 4512."@en .
+    skos:scopeNote "a) Māori health policy is included in Group 4510 Te hauora me te oranga o te Māori (Māori health and wellbeing)."@en .
 
 <https://linked.data.gov.au/def/anzsrc-for/2020/4705> a skos:Concept ;
     skos:broader <https://linked.data.gov.au/def/anzsrc-for/2020/47> ;
@@ -16335,7 +16337,7 @@ c) Biography is included in Group 4303 Historical studies."""@en .
 
 Fields of Research (FoR)
 
-Released at 11.30am (Canberra time) 30 June 2020
+Released at 11.30am (Canberra time) 24 October 2025
 
 Explanatory Notes
 
@@ -16387,8 +16389,8 @@ Guidelines for classifying by FoR
 
 9. Where a defined field cannot be identified within a group, the 'not elsewhere classified' category at the field level is to be used.
 
-© Commonwealth of Australia 2020
+© Commonwealth of Australia 2025
 
-© Crown Copyright New Zealand 2020"""@en ;
+© Crown Copyright New Zealand 2025"""@en ;
     skos:prefLabel "1297.0 ANZSRC - Australian and New Zealand Standard Research Classification, 2020: Fields of Research (FoR)"@en .
 
