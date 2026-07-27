@@ -52,7 +52,7 @@ from rdflib.namespace import XSD
 # --------------------------------------------------------------------------- #
 # Defaults
 # --------------------------------------------------------------------------- #
-DEFAULT_XLSX = "/home/u4187959/Downloads/anzsrc-for_2020.xlsx"
+DEFAULT_XLSX = "/home/u4187959/Downloads/anzsrc2020_for.xlsx"
 DEFAULT_OUTPUT = "output/anzsrc-for_2020.rdf"
 DEFAULT_SCHEME_URI = "https://linked.data.gov.au/def/anzsrc-for/2020"
 DEFAULT_LANG = "en"
@@ -239,6 +239,8 @@ def build_graph(
     scheme_uri: str,
     lang: str,
     issued: str | None,
+    modified: str | None = None,
+    history_note: str | None = None,
 ) -> Graph:
     g = Graph()
     g.bind("skos", SKOS)
@@ -256,6 +258,10 @@ def build_graph(
     g.add((scheme, SKOS.prefLabel, Literal(title, lang=lang)))
     if issued:
         g.add((scheme, DCTERMS.issued, Literal(issued, datatype=XSD.date)))
+    if modified:
+        g.add((scheme, DCTERMS.modified, Literal(modified, datatype=XSD.date)))
+    if history_note:
+        g.add((scheme, SKOS.historyNote, Literal(history_note, lang=lang)))
     if scheme_note:
         g.add((scheme, SKOS.note, Literal(scheme_note, lang=lang)))
 
@@ -266,7 +272,7 @@ def build_graph(
         concept = uri(code)
         g.add((concept, RDF.type, SKOS.Concept))
         g.add((concept, SKOS.prefLabel, Literal(label, lang=lang)))
-        g.add((concept, SKOS.notation, Literal(code)))
+        g.add((concept, SKOS.notation, Literal(code, lang=lang)))  # restored @en tag
         g.add((concept, SKOS.inScheme, scheme))
 
         if len(code) == 2:  # Division -> top concept
@@ -291,6 +297,24 @@ def build_graph(
                 g.add((concept, SKOS.definition, Literal(extra["definition"], lang=lang)))
             if "scopeNote" in extra:
                 g.add((concept, SKOS.scopeNote, Literal(extra["scopeNote"], lang=lang)))
+
+    # Materialise skos:broaderTransitive / skos:narrowerTransitive for all
+    # ancestor pairs so that users without a reasoner can query them directly.
+    for code in concepts:
+        if len(code) == 4:  # Group -> Division
+            division = code[:2]
+            if division in concepts:
+                g.add((uri(code), SKOS.broaderTransitive, uri(division)))
+                g.add((uri(division), SKOS.narrowerTransitive, uri(code)))
+        elif len(code) == 6:  # Field -> Group and Division
+            group = code[:4]
+            division = code[:2]
+            if group in concepts:
+                g.add((uri(code), SKOS.broaderTransitive, uri(group)))
+                g.add((uri(group), SKOS.narrowerTransitive, uri(code)))
+            if division in concepts:
+                g.add((uri(code), SKOS.broaderTransitive, uri(division)))
+                g.add((uri(division), SKOS.narrowerTransitive, uri(code)))
 
     return g
 
@@ -329,6 +353,8 @@ def main(argv: list[str] | None = None) -> int:
         help="rdflib serialization format (e.g. pretty-xml, xml, turtle, json-ld)",
     )
     parser.add_argument("--issued", default="2020-06-30", help="dcterms:issued date (or empty to omit)")
+    parser.add_argument("--modified", default="", help="dcterms:modified date for corrected release (or empty to omit)")
+    parser.add_argument("--history-note", default="", help="skos:historyNote explaining the relationship between original and corrected releases (or empty to omit)")
     args = parser.parse_args(argv)
 
     xlsx_path = Path(args.xlsx)
@@ -356,6 +382,8 @@ def main(argv: list[str] | None = None) -> int:
         scheme_uri=args.scheme_uri,
         lang=args.lang,
         issued=args.issued or None,
+        modified=args.modified or None,
+        history_note=args.history_note or None,
     )
 
     out_path = Path(args.output)
