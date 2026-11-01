@@ -44,6 +44,7 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
+from xml.sax.saxutils import escape, quoteattr
 
 import openpyxl
 from rdflib import DCTERMS, RDF, RDFS, SKOS, Graph, Literal, Namespace, URIRef
@@ -320,6 +321,109 @@ def build_graph(
 
 
 # --------------------------------------------------------------------------- #
+# Deterministic RDF/XML serialization
+# --------------------------------------------------------------------------- #
+# rdflib's "pretty-xml" serializer makes arbitrary choices about subject order
+# and element nesting on every run, which rewrites nearly the whole file even
+# when the data is unchanged. This serializer emits a flat RDF/XML document
+# with fully deterministic subject, predicate and object ordering so that
+# regenerating an unchanged vocabulary produces a byte-identical file and
+# content changes yield minimal diffs.
+
+NS_PREFIXES: list[tuple[str, str]] = [
+    ("rdf", str(RDF)),
+    ("rdfs", str(RDFS)),
+    ("skos", str(SKOS)),
+    ("dcterms", str(DCTERMS)),
+]
+
+# Fixed predicate ordering within each subject; unknown predicates sort after
+# these, alphabetically by URI.
+PREDICATE_ORDER: list[URIRef] = [
+    RDF.type,
+    SKOS.prefLabel,
+    SKOS.notation,
+    SKOS.definition,
+    SKOS.scopeNote,
+    SKOS.inScheme,
+    SKOS.topConceptOf,
+    SKOS.broader,
+    SKOS.broaderTransitive,
+    SKOS.narrower,
+    SKOS.narrowerTransitive,
+    DCTERMS.title,
+    RDFS.label,
+    DCTERMS.issued,
+    DCTERMS.modified,
+    SKOS.historyNote,
+    SKOS.note,
+    SKOS.hasTopConcept,
+]
+
+
+def _qname(uri: URIRef) -> str:
+    """Map a URI to a prefixed XML element name using NS_PREFIXES."""
+    text = str(uri)
+    for prefix, ns in NS_PREFIXES:
+        if text.startswith(ns) and len(text) > len(ns):
+            return f"{prefix}:{text[len(ns):]}"
+    raise ValueError(f"No known namespace prefix for {uri!r}")
+
+
+def serialize_deterministic_xml(g: Graph, dest: Path) -> None:
+    """Write ``g`` as flat RDF/XML with deterministic ordering.
+
+    Subjects are sorted by URI (concept schemes first), predicates follow
+    PREDICATE_ORDER, and multi-valued objects are sorted by string value.
+    """
+    order = {p: i for i, p in enumerate(PREDICATE_ORDER)}
+
+    subjects = sorted(set(g.subjects()), key=str)
+    if any(not isinstance(s, URIRef) for s in subjects):
+        raise ValueError("deterministic XML serializer supports URIRef subjects only")
+    schemes = [s for s in subjects if (s, RDF.type, SKOS.ConceptScheme) in g]
+    ordered_subjects = schemes + [s for s in subjects if s not in schemes]
+
+    lines = ['<?xml version="1.0" encoding="utf-8"?>']
+    xmlns = "\n".join(f'  xmlns:{prefix}="{ns}"' for prefix, ns in NS_PREFIXES)
+    lines.append(f"<rdf:RDF\n{xmlns}\n>")
+
+    for s in ordered_subjects:
+        types = sorted(g.objects(s, RDF.type), key=str)
+        tag, inlined_type = "rdf:Description", None
+        if len(types) == 1:
+            try:
+                tag, inlined_type = _qname(types[0]), types[0]
+            except ValueError:
+                pass
+        lines.append(f"  <{tag} rdf:about={quoteattr(str(s))}>")
+
+        pairs = [
+            (p, o)
+            for p, o in g.predicate_objects(s)
+            if not (p == RDF.type and o == inlined_type)
+        ]
+        pairs.sort(key=lambda po: (order.get(po[0], len(order)), str(po[0]), str(po[1])))
+        for p, o in pairs:
+            pq = _qname(p)
+            if isinstance(o, URIRef):
+                lines.append(f"    <{pq} rdf:resource={quoteattr(str(o))}/>")
+            elif isinstance(o, Literal):
+                attr = ""
+                if o.language:
+                    attr = f' xml:lang="{o.language}"'
+                elif o.datatype:
+                    attr = f" rdf:datatype={quoteattr(str(o.datatype))}"
+                lines.append(f"    <{pq}{attr}>{escape(str(o))}</{pq}>")
+            else:
+                raise ValueError(f"Unsupported object type for {s} {p}: {o!r}")
+        lines.append(f"  </{tag}>")
+
+    lines.append("</rdf:RDF>")
+    dest.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+# --------------------------------------------------------------------------- #
 # Validation
 # --------------------------------------------------------------------------- #
 def validate(concepts: dict[str, str], definitions: dict[str, dict[str, str]]) -> None:
@@ -350,7 +454,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--format",
         default="pretty-xml",
-        help="rdflib serialization format (e.g. pretty-xml, xml, turtle, json-ld)",
+        help="output format: 'xml'/'pretty-xml' use a built-in deterministic "
+        "RDF/XML serializer; other values (e.g. turtle, json-ld) are passed "
+        "to rdflib",
     )
     parser.add_argument("--issued", default="2020-06-30", help="dcterms:issued date (or empty to omit)")
     parser.add_argument("--modified", default="", help="dcterms:modified date for corrected release (or empty to omit)")
@@ -388,7 +494,10 @@ def main(argv: list[str] | None = None) -> int:
 
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    graph.serialize(destination=str(out_path), format=args.format)
+    if args.format in ("xml", "pretty-xml"):
+        serialize_deterministic_xml(graph, out_path)
+    else:
+        graph.serialize(destination=str(out_path), format=args.format)
     print(f"Wrote {len(graph)} triples to {out_path} ({args.format})", file=sys.stderr)
     return 0
 
